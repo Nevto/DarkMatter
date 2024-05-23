@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import Lirium from './models/Lirium.mjs';
 import PubNubServer from './pubnubServer.mjs';
 import liriumRouter from './routes/lirium-routes.mjs';
+import errorHandler from './middleware/errorhandler.mjs';
 
 
 dotenv.config({ path: './config/config.env' });
@@ -23,6 +24,8 @@ app.use(express.json());
 
 app.use('/api/v1/lirium', liriumRouter)
 
+
+app.use(errorHandler)
 
 
 const DEFAULT_PORT = 5001;
