@@ -5,7 +5,7 @@ import PubNubServer from './pubnubServer.mjs';
 import liriumRouter from './routes/lirium-routes.mjs';
 
 
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: './config/config.env' });
 
 const credentials = {
     publishKey: process.env.PUBLISH_KEY,
@@ -15,7 +15,7 @@ const credentials = {
 };
 
 export const lirium = new Lirium();
-export const pubnubServer = new PubNubServer(lirium, credentials);
+export const pubnubServer = new PubNubServer({ lirium, credentials });
 
 
 const app = express();
