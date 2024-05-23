@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import Lirium from './models/Lirium.mjs';
 import PubNubServer from './pubnubServer.mjs';
 import liriumRouter from './routes/lirium-routes.mjs';
+import blockRouter from './routes/block-routes.mjs';
 import errorHandler from './middleware/errorhandler.mjs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -30,6 +31,7 @@ const dirname = path.dirname(filename)
 global.__appdir = dirname
 
 app.use('/api/v1/lirium', liriumRouter)
+app.use('/api/v1/block', blockRouter)
 
 app.all('*', (req, res, next) => {
     const error = new Error(`You probably used the wrong URL, doublecheck please - ${req.originalUrl}`);
