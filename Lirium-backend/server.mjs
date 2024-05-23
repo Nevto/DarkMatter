@@ -4,6 +4,8 @@ import Lirium from './models/Lirium.mjs';
 import PubNubServer from './pubnubServer.mjs';
 import liriumRouter from './routes/lirium-routes.mjs';
 import errorHandler from './middleware/errorhandler.mjs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 
 dotenv.config({ path: './config/config.env' });
@@ -22,8 +24,18 @@ export const pubnubServer = new PubNubServer({ lirium, credentials });
 const app = express();
 app.use(express.json());
 
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
+
+global.__appdir = dirname
+
 app.use('/api/v1/lirium', liriumRouter)
 
+app.all('*', (req, res, next) => {
+    const error = new Error(`You probably used the wrong URL, doublecheck please - ${req.originalUrl}`);
+    error.status = 404;
+    next(error);
+});
 
 app.use(errorHandler)
 
