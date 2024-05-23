@@ -5,8 +5,8 @@ const CHANNELS = {
 };
 
 export default class PubNubServer {
-  constructor({ blockchain, credentials }) {
-    this.blockchain = blockchain;
+  constructor({ lirium, credentials }) {
+    this.lirium = lirium;
 
     this.pubnub = new PubNub(credentials);
     this.pubnub.subscribe({ channels: Object.values(CHANNELS) });
@@ -16,7 +16,7 @@ export default class PubNubServer {
   broadcast() {
     this.publish({
       channel: CHANNELS.LIRIUM,
-      message: JSON.stringify(this.blockchain.chain),
+      message: JSON.stringify(this.lirium.chain),
     });
   }
 
@@ -31,7 +31,7 @@ export default class PubNubServer {
         );
 
         if (channel === CHANNELS.LIRIUM) {
-          this.blockchain.replaceChain(msg);
+          this.lirium.replaceChain(msg);
         }
       },
     };

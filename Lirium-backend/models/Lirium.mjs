@@ -1,4 +1,4 @@
-import Block from '../models/Block.mjs'
+import Block from './Block.mjs'
 import { createHash } from '../utilities/crypto-lib.mjs'
 export default class Lirium {
     constructor() {
