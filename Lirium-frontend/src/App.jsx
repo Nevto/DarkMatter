@@ -1,9 +1,17 @@
+import React, { useEffect, useState } from 'react'
+import RetrieveLiriumBlocks from './components/getLiriumBlocks'
 
 function App() {
 
+
   return (
     <>
-      <h1>Hej</h1>
+      <div>
+        <h1>Hej</h1>
+
+        <RetrieveLiriumBlocks />
+      </div>
+
     </>
   )
 }

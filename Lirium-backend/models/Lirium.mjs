@@ -7,7 +7,7 @@ export default class Lirium {
     }
 
     addBlock({ data }) {
-        const newBlock = Block.MineBlock({
+        const newBlock = Block.mineBlock({
             lastBlock: this.chain.at(-1),
             data
         })
