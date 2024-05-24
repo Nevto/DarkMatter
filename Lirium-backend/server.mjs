@@ -7,6 +7,7 @@ import blockRouter from './routes/block-routes.mjs';
 import transactionRouter from './routes/transaction-routes.mjs';
 import errorHandler from './middleware/errorhandler.mjs';
 import path from 'path';
+import cors from 'cors';
 import { fileURLToPath } from 'url';
 
 
@@ -24,6 +25,8 @@ export const pubnubServer = new PubNubServer({ lirium, credentials });
 
 
 const app = express();
+
+app.use(cors())
 app.use(express.json());
 
 const filename = fileURLToPath(import.meta.url)
