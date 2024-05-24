@@ -47,46 +47,46 @@ export default class Lirium {
         if (!Lirium.isValidChain(chain)) return
 
 
-    this.chain = chain;
-  }
-
-  static isValidChain(chain) {
-    if (!this.isValidGenesis(chain[0])) {
-      return false;
+        this.chain = chain;
     }
 
-    for (let i = 1; i < chain.length; i++) {
-      const block = chain[i];
-      const previousBlock = chain[i - 1];
+    static isValidChain(chain) {
+        if (!this.isValidGenesis(chain[0])) {
+            return false;
+        }
 
-      if (
-        !this.isValidHash(block, previousBlock) ||
-        !this.isValidDifficulty(block, previousBlock)
-      ) {
-        return false;
-      }
+        for (let i = 1; i < chain.length; i++) {
+            const block = chain[i];
+            const previousBlock = chain[i - 1];
+
+            if (
+                !this.isValidHash(block, previousBlock) ||
+                !this.isValidDifficulty(block, previousBlock)
+            ) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    return true;
-  }
+    static isValidGenesis(block) {
+        return JSON.stringify(block) === JSON.stringify(Block.genesis);
+    }
 
-  static isValidGenesis(block) {
-    return JSON.stringify(block) === JSON.stringify(Block.genesis);
-  }
+    static isValidHash(block, previousBlock) {
+        const validHash = createHash(
+            block.timestamp,
+            block.lastHash,
+            block.data,
+            block.nonce,
+            block.difficulty,
+            block.blockIndex
+        );
+        return block.hash === validHash && block.lastHash === previousBlock.hash;
+    }
 
-  static isValidHash(block, previousBlock) {
-    const validHash = createHash(
-      block.timestamp,
-      block.lastHash,
-      block.data,
-      block.nonce,
-      block.difficulty,
-      block.blockIndex
-    );
-    return block.hash === validHash && block.lastHash === previousBlock.hash;
-  }
-
-  static isValidDifficulty(block, previousBlock) {
-    return Math.abs(previousBlock.difficulty - block.difficulty) <= 1;
-  }
+    static isValidDifficulty(block, previousBlock) {
+        return Math.abs(previousBlock.difficulty - block.difficulty) <= 1;
+    }
 }
