@@ -3,7 +3,7 @@ import { NotFound } from './src/components/Notfound';
 import { Homepage } from './src/components/Homepage';
 import RetrieveLiriumBlocks from './src/components/getLiriumBlocks';
 import { Layout } from './src/components/Layout';
-import { SendTransaction } from './src/components/SendTransaction';
+import SendTransaction  from './src/components/SendTransaction';
 
 export const router = createBrowserRouter([
   {
