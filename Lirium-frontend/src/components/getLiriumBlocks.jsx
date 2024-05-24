@@ -1,8 +1,9 @@
 import { getLiriumBlocks } from "../services/HttpClient";
 
-const retrieveLiriumBlocks = ({ loadLiriumBlocks }) => {
+const RetrieveLiriumBlocks = ({ loadLiriumBlocks }) => {
     const handleLoadLiriumBlocks = async () => {
-        const liriumBlocks = await getLiriumBlocks(loadLiriumBlocks);
+        const liriumBlocks = await getLiriumBlocks();
+        loadLiriumBlocks(liriumBlocks);
     }
 
     return (
@@ -10,4 +11,4 @@ const retrieveLiriumBlocks = ({ loadLiriumBlocks }) => {
     )
 }
 
-export default retrieveLiriumBlocks
+export default RetrieveLiriumBlocks
