@@ -3,6 +3,6 @@ import { createTransaction } from '../controllers/transaction-controller.mjs';
 
 const router = express.Router();
 
-router.route("/transaction").post(createTransaction);
+router.route("/").post(createTransaction);
 
 export default router;
