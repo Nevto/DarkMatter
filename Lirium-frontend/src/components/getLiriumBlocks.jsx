@@ -29,6 +29,8 @@ const RetrieveLiriumBlocks = () => {
             Nonce: {block.nonce}
             <br />
             Difficulty: {block.difficulty}
+            <br />
+            Block Index: {block.blockIndex}
           </li>
         ))}
       </ul>
