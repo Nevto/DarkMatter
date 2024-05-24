@@ -5,6 +5,6 @@ export default class Transaction {
         this.amount = amount;
         this.sender = sender;
         this.recipient = recipient;
-        this.transactionId = uuidv4().replaceAll("_", "");
+        this.transactionId = uuidv4().replaceAll("-", "");
     }
 }

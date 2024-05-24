@@ -11,7 +11,7 @@ export default class Lirium {
     }
 
     addBlock({ data }) {
-        const newBlock = Block.MineBlock({
+        const newBlock = Block.mineBlock({
             lastBlock: this.chain.at(-1),
             data
         })
@@ -24,6 +24,15 @@ export default class Lirium {
     createTransaction({amount, sender, recipient}) {
         return new Transaction({amount, sender, recipient});
     }
+
+    addTransaction(transaction) {
+        this.pendingTransactions.push(transaction);
+        return this.getLastBlock().index + 1;
+    };
+
+    getLastBlock() {
+        return this.chain.at(-1);
+    };
 
     replaceChain(chain) {
         if (chain.length <= this.chain.length) return
