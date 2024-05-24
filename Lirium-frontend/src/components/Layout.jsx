@@ -3,9 +3,9 @@ import { NavLink, Outlet } from 'react-router-dom';
 export const Layout = () => {
   return (
     <>
-      <div className='wrapperNav'>
+      <div className='wrapper-nav'>
         <header>
-          <h1 className='nav-h1'>Lirium-Protocol</h1>
+          <h2 className='nav-h2'>Lirium-Protocol</h2>
           <nav>
             <ul className='nav-ul'>
               <li>
@@ -15,7 +15,7 @@ export const Layout = () => {
                 <NavLink to={'/transactions'}>transactions</NavLink>
               </li>
               <li>
-                <NavLink to={'/mine'}>Mine</NavLink>
+                <NavLink to={'/sendtransaction'}>Send</NavLink>
               </li>
             </ul>
           </nav>
