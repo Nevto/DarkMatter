@@ -4,6 +4,7 @@ import Lirium from './models/Lirium.mjs';
 import PubNubServer from './pubnubServer.mjs';
 import liriumRouter from './routes/lirium-routes.mjs';
 import blockRouter from './routes/block-routes.mjs';
+import transactionRouter from './routes/transaction-routes.mjs';
 import errorHandler from './middleware/errorhandler.mjs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -32,6 +33,7 @@ global.__appdir = dirname
 
 app.use('/api/v1/lirium', liriumRouter)
 app.use('/api/v1/block', blockRouter)
+app.use('/api/v1/transaction', transactionRouter);
 
 app.all('*', (req, res, next) => {
     const error = new Error(`You probably used the wrong URL, doublecheck please - ${req.originalUrl}`);
