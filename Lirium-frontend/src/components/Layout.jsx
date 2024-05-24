@@ -4,8 +4,8 @@ export const Layout = () => {
   return (
     <>
       <div className='wrapper-nav'>
-        <header>
-          <h2 className='nav-h2'>Lirium-Protocol</h2>
+        <header className='header'>
+          <h1 className='nav-h1'>Lirium-Protocol</h1>
           <nav>
             <ul className='nav-ul'>
               <li>
