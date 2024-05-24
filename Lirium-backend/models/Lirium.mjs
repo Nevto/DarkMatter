@@ -11,23 +11,31 @@ export default class Lirium {
     }
 
     addBlock({ data }) {
+        const transactionsData = this.pendingTransactions.map(transaction => ({
+            ...transaction,
+            transactionId: transaction.transactionId
+
+        }));
+        console.log(transactionsData);
+
         const newBlock = Block.mineBlock({
             lastBlock: this.chain.at(-1),
-            data
+            data: { ...data, transactions: transactionsData }
         })
 
-        this.pendingTransactions = [];
+        this.pendingTransactions = []
         this.chain.push(newBlock)
         return newBlock
     }
 
-    createTransaction({amount, sender, recipient}) {
-        return new Transaction({amount, sender, recipient});
+    createTransaction({ amount, sender, recipient, }) {
+        return new Transaction({ amount, sender, recipient });
     }
 
     addTransaction(transaction) {
+        console.log(transaction);
         this.pendingTransactions.push(transaction);
-        return this.getLastBlock().index + 1;
+        return this.chain.length + 1
     };
 
     getLastBlock() {
