@@ -16,7 +16,6 @@ export default class Lirium {
             transactionId: transaction.transactionId
 
         }));
-        console.log(transactionsData);
 
         const newBlock = Block.mineBlock({
             lastBlock: this.chain.at(-1),
@@ -86,7 +85,11 @@ export default class Lirium {
         return block.hash === validHash && block.lastHash === previousBlock.hash;
     }
 
-    static isValidDifficulty(block, previousBlock) {
+    static isValidDifficulty(block, previousBlock, minDifficulty = 1) {
+
+        if (block.difficulty < minDifficulty) return false;
+        if (previousBlock.difficulty - block.difficulty > 1) return false;
+
         return Math.abs(previousBlock.difficulty - block.difficulty) <= 1;
     }
-}
+}   
