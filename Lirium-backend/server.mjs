@@ -23,7 +23,6 @@ const credentials = {
 export const lirium = new Lirium();
 export const pubnubServer = new PubNubServer({ lirium, credentials });
 
-
 const app = express();
 
 app.use(cors())
