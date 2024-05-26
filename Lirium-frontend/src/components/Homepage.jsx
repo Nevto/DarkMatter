@@ -26,19 +26,19 @@ export const Homepage = () => {
         <ul className='ul-wrapper'>
           <h4>Stay Connected</h4>
           <li>
-            <a href='#'>Whitepaper</a>
+            <a href='/maintenance'>Whitepaper</a>
           </li>
           <li>
-            <a href='#'>Developer Resources</a>
+            <a href='/maintenance'>Developer Resources</a>
           </li>
           <li>
-            <a href='#'>Community Forum</a>
+            <a href='/maintenance'>Community Forum</a>
           </li>
           <li>
-            <a href='#'>Blog</a>
+            <a href='/maintenance'>Blog</a>
           </li>
           <li>
-            <a href='#'>Contact Us</a>
+            <a href='/maintenance'>Contact Us</a>
           </li>
         </ul>
       </div>
