@@ -16,6 +16,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(rgb(183, 2, 2), rgb(255, 255, 255), rgb(255, 255, 255));
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 nav {

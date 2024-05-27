@@ -32,7 +32,6 @@ export const pubnubServer = new PubNubServer({
     credentials,
 });
 
-
 const app = express();
 
 app.use(cors())
