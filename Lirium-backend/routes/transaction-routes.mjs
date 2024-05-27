@@ -3,7 +3,7 @@ import { addTransaction, getTransactionPool } from '../controllers/transaction-c
 
 const router = express.Router();
 
-router.route("/transaction").post(addTransaction);
+router.route("/").post(addTransaction);
 router.route("/transactions").get(getTransactionPool);
 // router.route("/broadcast").post(broadcastTransaction);
 
