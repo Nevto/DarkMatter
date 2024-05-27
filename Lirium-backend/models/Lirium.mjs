@@ -1,25 +1,17 @@
 import Block from './Block.mjs'
 import { createHash } from '../utilities/crypto-lib.mjs'
-import Transaction from './Transaction.mjs'
+
 
 export default class Lirium {
     constructor() {
         //Needs to create the Block class
         this.chain = [Block.genesis]
-        //Array of pending transactions
-        this.pendingTransactions = []
     }
 
     addBlock({ data }) {
-        const transactionsData = this.pendingTransactions.map(transaction => ({
-            ...transaction,
-            transactionId: transaction.transactionId
-
-        }));
-
         const newBlock = Block.mineBlock({
             lastBlock: this.chain.at(-1),
-            data: { ...data, transactions: transactionsData }
+            data: data,
         })
 
         this.pendingTransactions = []
@@ -27,15 +19,15 @@ export default class Lirium {
         return newBlock
     }
 
-    createTransaction({ amount, sender, recipient, }) {
+    /* createTransaction({ amount, sender, recipient, }) {
         return new Transaction({ amount, sender, recipient });
-    }
+    } */
 
-    addTransaction(transaction) {
+    /* addTransaction(transaction) {
         console.log(transaction);
         this.pendingTransactions.push(transaction);
         return this.chain.length + 1
-    };
+    }; */
 
     getLastBlock() {
         return this.chain.at(-1);
