@@ -44,7 +44,7 @@ global.__appdir = dirname
 
 app.use('/api/v1/lirium', liriumRouter)
 app.use('/api/v1/block', blockRouter)
-app.use('/api/v1/wallet', transactionRouter);
+app.use('/api/v1/transaction', transactionRouter);
 
 app.all('*', (req, res, next) => {
     const error = new Error(`You probably used the wrong URL, doublecheck please - ${req.originalUrl}`);
