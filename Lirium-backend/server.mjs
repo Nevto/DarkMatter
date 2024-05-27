@@ -1,8 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import Lirium from './models/Lirium.mjs';
-import PubNubServer from './pubnubServer.mjs';
+import TransactionPool from './models/TransactionPool.mjs';
+import Wallet from './models/Wallet.mjs';
 import liriumRouter from './routes/lirium-routes.mjs';
+import PubNubServer from './pubnubServer.mjs';
 import blockRouter from './routes/block-routes.mjs';
 import transactionRouter from './routes/transaction-routes.mjs';
 import errorHandler from './middleware/errorhandler.mjs';
@@ -21,7 +23,14 @@ const credentials = {
 };
 
 export const lirium = new Lirium();
-export const pubnubServer = new PubNubServer({ lirium, credentials });
+export const transactionPool = new TransactionPool();
+export const wallet = new Wallet();
+export const pubnubServer = new PubNubServer({ 
+    lirium, 
+    transactionPool, 
+    wallet,
+    credentials,
+});
 
 
 const app = express();
@@ -36,7 +45,7 @@ global.__appdir = dirname
 
 app.use('/api/v1/lirium', liriumRouter)
 app.use('/api/v1/block', blockRouter)
-app.use('/api/v1/transaction', transactionRouter);
+app.use('/api/v1/wallet', transactionRouter);
 
 app.all('*', (req, res, next) => {
     const error = new Error(`You probably used the wrong URL, doublecheck please - ${req.originalUrl}`);
@@ -56,6 +65,14 @@ setTimeout(() => {
     pubnubServer.broadcast();
 }, 1000);
 
+const synchronizeChains = async () => {
+    const response = await fetch(`${ROOT_NODE}/api/v1/lirium`);
+    if (response.ok) {
+        const result = await response.json();
+        lirium.replaceChain(result.data);
+    }
+};
+
 if (process.env.GENERATE_NODE_PORT === 'true') {
     NODE_PORT = DEFAULT_PORT + Math.ceil(Math.random() * 1000);
 }
@@ -66,4 +83,8 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     console.log(`Root node is ${ROOT_NODE}`);
 
-})
+    if (PORT !== DEFAULT_PORT) {
+        synchronizeChains();
+    }
+
+});
