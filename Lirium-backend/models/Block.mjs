@@ -13,12 +13,12 @@ export default class Block {
     blockIndex,
   }) {
     this.timestamp = timestamp;
+    this.blockIndex = blockIndex;
     this.lastHash = lastHash;
     this.hash = hash;
-    this.data = data;
     this.nonce = nonce;
     this.difficulty = difficulty;
-    this.blockIndex = blockIndex;
+    this.data = data;
   }
 
   static get genesis() {
@@ -40,8 +40,8 @@ export default class Block {
       hash = createHash(
         timestamp,
         lastHash,
-        data,
         nonce,
+        data,
         difficulty,
         blockIndex
       );

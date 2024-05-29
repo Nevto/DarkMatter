@@ -15,3 +15,15 @@ export const sendTransaction = async (sender, recipient, amount) => {
   const response = await axios.post('http://localhost:5001/api/v1/transaction', transactionData);
   return response.data;
 };
+
+export const showTransactionPool = async (sender, recipient, amount) => {
+  const transactionPool = {
+    sender: sender,
+    recipient: recipient,
+    amount: amount
+  };
+
+  const response = await axios.get('http://localhost:5001/api/v1/transaction/transactions', transactionPool);
+  return response.data;
+  console.log(response.data);
+};

@@ -26,17 +26,17 @@ const RetrieveLiriumBlocks = () => {
             <li key={index} className='block-Container'>
               Timestamp: {block.timestamp}
               <br />
-              Last Hash: {block.lastHash}
+              Block Index: {block.blockIndex}
               <br />
               Hash: {block.hash}
               <br />
-              Data: {JSON.stringify(block.data)}
+              Last Hash: {block.lastHash}
               <br />
               Nonce: {block.nonce}
               <br />
               Difficulty: {block.difficulty}
               <br />
-              Block Index: {block.blockIndex}
+              Data: {JSON.stringify(block.data)}
             </li>
           ))}
         </ul>
