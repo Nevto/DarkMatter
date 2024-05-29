@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { sendTransaction } from '../services/HttpClient';
+import { sendTransaction, mineBlock } from '../services/HttpClient';
 
 const SendTransaction = () => {
   const [sender, setSender] = useState('');
@@ -16,6 +16,15 @@ const SendTransaction = () => {
       setAmount('');
     } catch (error) {
       console.error('Error sending transaction:', error);
+    }
+  };
+
+  const handleMineBlock = async () => {
+    try {
+      const response = await mineBlock();
+      console.log('Mining result:', response);
+    } catch (error) {
+      console.error('Error mining transactions:', error);
     }
   };
 
@@ -37,6 +46,7 @@ const SendTransaction = () => {
         </div>
         <button type="submit">Send Transaction</button>
       </form>
+      <button onClick={handleMineBlock}>Mine Transactions</button>
     </div>
   );
 };

@@ -25,5 +25,9 @@ export const showTransactionPool = async (sender, recipient, amount) => {
 
   const response = await axios.get('http://localhost:5001/api/v1/transaction/transactions', transactionPool);
   return response.data;
-  console.log(response.data);
+};
+
+export const mineBlock = async () => {
+  const response = await axios.get('http://localhost:5001/api/v1/transaction/mine');
+  return response.data;
 };
