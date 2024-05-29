@@ -1,5 +1,8 @@
 import {transactionPool} from "../server.mjs"
 import { wallet } from "../server.mjs"
+import { lirium } from "../server.mjs"
+import Miner from "../models/Miner.mjs";
+
 import { pubnubServer } from "../server.mjs";
 
 export const addTransaction = (req, res, next) => {
@@ -30,7 +33,7 @@ export const getTransactionPool = (req, res, next) => {
 };
 
 export const mineTransactions = (req, res, next) => {
-    const miner = new Miner({ blockchain, transactionPool, wallet, pubnubServer });
+    const miner = new Miner({ lirium, transactionPool, wallet, pubnubServer });
   
     miner.mineTransaction();
   
