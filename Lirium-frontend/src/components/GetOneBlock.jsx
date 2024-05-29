@@ -47,12 +47,12 @@ const GetOneBlock = () => {
         {filteredBlock ? (
           <div>
             <p>Timestamp: {filteredBlock.timestamp}</p>
+            <p>Block Index: {filteredBlock.blockIndex}</p>
             <p>Last Hash: {filteredBlock.lastHash}</p>
             <p>Hash: {filteredBlock.hash}</p>
-            <p>Data: {JSON.stringify(filteredBlock.data)}</p>
             <p>Nonce: {filteredBlock.nonce}</p>
             <p>Difficulty: {filteredBlock.difficulty}</p>
-            <p>Block Index: {filteredBlock.blockIndex}</p>
+            <p>Data: {JSON.stringify(filteredBlock.data)}</p>
           </div>
         ) : (
           <p>No block found for the given index</p>

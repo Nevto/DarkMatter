@@ -28,3 +28,12 @@ export const addTransaction = (req, res, next) => {
 export const getTransactionPool = (req, res, next) => {
     res.status(200).json({ success: true, statusCode: 200, data: transactionPool.transactionMap });
 };
+
+export const mineTransactions = (req, res, next) => {
+    const miner = new Miner({ blockchain, transactionPool, wallet, pubnubServer });
+  
+    miner.mineTransaction();
+  
+    res.status(200).json({ success: true, statusCode: 200, data: "Block has been mined and added to the blockchain" });
+  };
+  
