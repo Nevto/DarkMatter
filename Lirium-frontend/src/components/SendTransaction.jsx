@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { sendTransaction, mineBlock, getTransactionPool } from '../services/HttpClient';
+import { sendTransaction, mineBlock } from '../services/HttpClient';
 
 const SendTransaction = () => {
   const [sender, setSender] = useState('');
@@ -15,7 +15,6 @@ const SendTransaction = () => {
       setSender('');
       setRecipient('');
       setAmount('');
-      handlegetTransactionPool();
     } catch (error) {
       console.error(error);
       window.alert('Transaction failed. Please try again.');
