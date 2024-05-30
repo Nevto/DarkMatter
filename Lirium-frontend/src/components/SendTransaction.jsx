@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { sendTransaction, mineBlock } from '../services/HttpClient';
+import { sendTransaction, mineBlock, getTransactionPool } from '../services/HttpClient';
 
 const SendTransaction = () => {
   const [sender, setSender] = useState('');
   const [recipient, setRecipient] = useState('');
   const [amount, setAmount] = useState('');
+  const [transactionPool, setTransactionPool] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,10 +15,18 @@ const SendTransaction = () => {
       setSender('');
       setRecipient('');
       setAmount('');
+      handlegetTransactionPool();
     } catch (error) {
       console.error('Error sending transaction:', error);
     }
   };
+
+  const handlegetTransactionPool = async () => {
+    const transactions = await getTransactionPool();
+    setTransactionPool(transactions.data);
+    console.log('Transaction Pool:', transactions.data);
+  };
+
 
   const handleMineBlock = async () => {
     try {
@@ -44,7 +53,7 @@ const SendTransaction = () => {
           <label>Amount:</label>
           <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} />
         </div>
-        <button type="submit">Send Transaction</button>
+        <button type="submit">Add Transaction</button>
       </form>
       <button onClick={handleMineBlock}>Mine Transactions</button>
     </div>
