@@ -11,7 +11,7 @@ const SendTransaction = () => {
     try {
       const response = await sendTransaction(sender, recipient, amount);
       console.log(response);
-      window.alert('You successfully sent your transaction!');
+      window.alert('Successfully added transaction. Please mine the block to confirm');
       setSender('');
       setRecipient('');
       setAmount('');
@@ -24,7 +24,7 @@ const SendTransaction = () => {
   const handleMineBlock = async () => {
     try {
       const response = await mineBlock();
-      console.log('Mining result:', response);
+      window.alert('Block mined successfully and added to the blockchain.');
     } catch (error) {
       console.error('Error mining transactions:', error);
     }
@@ -47,7 +47,7 @@ const SendTransaction = () => {
           <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} />
         </div>
         <button type="submit">Add Transaction</button>
-        <button onClick={handleMineBlock}>Mine Transactions</button>
+        <button onClick={handleMineBlock}>Mine Block</button>
       </form>
     </div>
   );
