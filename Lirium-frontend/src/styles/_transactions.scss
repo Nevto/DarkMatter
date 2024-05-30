@@ -56,9 +56,13 @@
     width: auto;
     box-sizing: border-box;
     box-shadow: purple 0px 5px 5px;
+    max-width: 70vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
 }
 
 .blockchainWrapper li {
     padding: 0.3rem;
     list-style-type: none;
+
 }
