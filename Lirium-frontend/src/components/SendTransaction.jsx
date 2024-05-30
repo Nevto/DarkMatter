@@ -5,7 +5,6 @@ const SendTransaction = () => {
   const [sender, setSender] = useState('');
   const [recipient, setRecipient] = useState('');
   const [amount, setAmount] = useState('');
-  const [transactionPool, setTransactionPool] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,13 +21,6 @@ const SendTransaction = () => {
       window.alert('Transaction failed. Please try again.');
     }
   };
-
-  const handlegetTransactionPool = async () => {
-    const transactions = await getTransactionPool();
-    setTransactionPool(transactions.data);
-    console.log('Transaction Pool:', transactions.data);
-  };
-
 
   const handleMineBlock = async () => {
     try {
@@ -56,8 +48,8 @@ const SendTransaction = () => {
           <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} />
         </div>
         <button type="submit">Add Transaction</button>
+        <button onClick={handleMineBlock}>Mine Transactions</button>
       </form>
-      <button onClick={handleMineBlock}>Mine Transactions</button>
     </div>
   );
 };
