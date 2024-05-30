@@ -4,7 +4,6 @@ import { createHash } from '../utilities/crypto-lib.mjs'
 
 export default class Lirium {
     constructor() {
-        //Needs to create the Block class
         this.chain = [Block.genesis]
     }
 
@@ -19,15 +18,6 @@ export default class Lirium {
         return newBlock
     }
 
-    /* createTransaction({ amount, sender, recipient, }) {
-        return new Transaction({ amount, sender, recipient });
-    } */
-
-    /* addTransaction(transaction) {
-        console.log(transaction);
-        this.pendingTransactions.push(transaction);
-        return this.chain.length + 1
-    }; */
 
     getLastBlock() {
         return this.chain.at(-1);
