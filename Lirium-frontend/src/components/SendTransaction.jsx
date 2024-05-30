@@ -10,17 +10,19 @@ const SendTransaction = () => {
     e.preventDefault();
     try {
       const response = await sendTransaction(sender, recipient, amount);
-      console.log('Transaction sent:', response);
+      console.log(response);
+      window.alert('You successfully sent your transaction!');
       setSender('');
       setRecipient('');
       setAmount('');
     } catch (error) {
-      console.error('Error sending transaction:', error);
+      console.error(error);
+      window.alert('Transaction failed. Please try again.');
     }
   };
 
   return (
-    <div>
+    <div className='sendTransactionWrapper'>
       <h1>Send a Transaction</h1>
       <form onSubmit={handleSubmit}>
         <div>
