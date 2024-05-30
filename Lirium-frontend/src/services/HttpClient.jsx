@@ -16,14 +16,12 @@ export const sendTransaction = async (sender, recipient, amount) => {
   return response.data;
 };
 
-export const showTransactionPool = async (sender, recipient, amount) => {
-  const transactionPool = {
-    sender: sender,
-    recipient: recipient,
-    amount: amount
-  };
-
-  const response = await axios.get('http://localhost:5001/api/v1/transaction/transactions', transactionPool);
+export const getTransactionPool = async () => {
+  const response = await axios.get('http://localhost:5001/api/v1/transaction/transactions');
   return response.data;
-  console.log(response.data);
+};
+
+export const mineBlock = async () => {
+  const response = await axios.get('http://localhost:5001/api/v1/transaction/mine');
+  return response.data;
 };
