@@ -1,4 +1,6 @@
-# <img src="Lirium-frontend\src\assets\Lirium-Protocol-Logo.png" alt="Lirium Protocol Logo" width="250px"> Lirium Protocol: Decentralized Finance for Everyone 
+# <img src="Lirium-frontend\src\assets\Lirium-Protocol-Logo.png" alt="Lirium Protocol Logo" width="250px"> 
+
+Lirium Protocol: Decentralized Finance for Everyone 
 
 ## 👋 Overview
 
