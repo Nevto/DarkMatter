@@ -7,6 +7,9 @@ import { MineBlock } from './components/MineBlock';
 import { SendTransaction } from './components/SendTransaction';
 import { GetDarkMatter } from './components/DarkMatter';
 import RegisterForm from './components/Register';
+import { RouterProvider } from 'react-router-dom';
+import { darkMatterRouter } from './Router.jsx';
+
 
 const App = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -16,17 +19,23 @@ const App = () => {
   };
 
   return (
-    <div>
 
+    <div>
       <UserProvider>
-        <Header onLoginClick={handleLoginClick} />
-        {showLoginForm && <LogInForm />}
-        <RegisterForm />
+        <RouterProvider router={darkMatterRouter} />
       </UserProvider>
-      <SendTransaction />
-      <MineBlock />
-      <GetDarkMatter />
     </div>
+    // <div>
+
+    //   <UserProvider>
+    //     <Header onLoginClick={handleLoginClick} />
+    //     {showLoginForm && <LogInForm />}
+    //     <RegisterForm />
+    //   </UserProvider>
+    //   <SendTransaction />
+    //   <MineBlock />
+    //   <GetDarkMatter />
+    // </div>
   );
 };
 

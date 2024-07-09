@@ -10,12 +10,12 @@ export const Layout = () => {
                         <img src={"./src/assets/DarkMatterLogo.png"} alt="Best logo in the world" />
                     </figure>
 
-                    <h1 className='title'>The Napoli Oven</h1>
+                    <h1 className='title'>DarkMatter</h1>
                     <div>
                         <nav>
                             <ul>
                                 <li>
-                                    <NavLink to="/">DarkMatter</NavLink>
+                                    <NavLink to="/">Home</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/transaction">Transaction</NavLink>
