@@ -1,43 +1,65 @@
 import { describe, test, expect, beforeEach } from 'vitest'
-import { createInputMap, createOutputMap, validateTransaction } from '../utilities/transaction-utils.mjs';
+import { validateTransaction } from '../utilities/transaction-utils.mjs';
+import Wallet from '../models/Wallet.mjs';
+import Transaction from '../models/Transaction.mjs';
 
 
 
 describe('Transaction Utilities', () => {
-    let sender, recipient, amount, outputMap, inputMap;
+    let sender, recipient, amount, transaction;
 
     beforeEach(() => {
-        sender = { publicKey: 'sender-public-key', balance: 1000, sign: () => 'signature' }
+        sender = new Wallet()
         recipient = 'recipient-public-key'
         amount = 50
-        outputMap = createOutputMap({ sender, recipient, amount })
-        inputMap = createInputMap({ sender, outputMap })
+        transaction = new Transaction({ sender, recipient, amount })
     })
 
-    test('creates an output map', () => {
-        expect(outputMap).toEqual({
-            [recipient]: amount,
+    test('creates an output map with the correct attributes', () => {
+        const expectedOutPutMap = {
             [sender.publicKey]: sender.balance - amount,
-        })
+            [recipient]: amount
+        }
+
+        expect(transaction.outputMap).toEqual(expectedOutPutMap)
     })
 
-    test('creates an input map', () => {
-        expect(inputMap).toEqual({
+    test('creates an input map with the correct attributes', () => {
+        const expectedInputMap = {
             timestamp: expect.any(Number),
             amount: sender.balance,
             address: sender.publicKey,
-            signature: 'signature',
-        })
+            signature: expect.any(Object)
+        }
+
+        expect(transaction.inputMap).toEqual(expectedInputMap)
     })
 
     test('validates a transaction', () => {
-        const isValid = validateTransaction({ inputMap, outputMap })
-        expect(isValid).toBe(false)
+        const isValid = validateTransaction({
+            inputMap: transaction.inputMap,
+            outputMap: transaction.outputMap,
+
+        })
+        expect(isValid).toBe(true)
     })
 
-    // test('invalidates a transaction with mismatched amount', () => {
-    //     outputMap[sender.publicKey] += 40
-    //     const isValid = validateTransaction({ inputMap, outputMap })
-    //     expect(isValid).toBe(false)
-    // })
+    test('invalidates a transaction with mismatched amount', () => {
+        transaction.outputMap[sender.publicKey] += 40;
+
+        const isValid = validateTransaction({ inputMap: transaction.inputMap, outputMap: transaction.outputMap })
+        expect(isValid).toBe(false)
+    });
+
+    test('invalidates a transaction with incorrect signature', () => {
+
+        transaction.inputMap.signature = { r: 'invalid_r_value', s: 'invalid_s_value' }
+
+        const isValid = validateTransaction({
+            inputMap: transaction.inputMap,
+            outputMap: transaction.outputMap,
+        });
+
+        expect(isValid).toBe(false)
+    });
 })
