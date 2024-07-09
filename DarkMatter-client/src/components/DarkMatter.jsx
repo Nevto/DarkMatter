@@ -26,7 +26,6 @@ export const GetDarkMatter = () => {
                         <p>Hash: {block.hash}</p>
                         <p>PrevHash: {block.lastHash}</p>
                         <p>Timestamp: {block.timestamp}</p>
-                        <p>Transactions: {block.transactions}</p>
                         <p>Nonce: {block.nonce}</p>
                         <p>Difficulty: {block.difficulty}</p>
                         <p>Data: {JSON.stringify(block.data)}</p>

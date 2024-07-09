@@ -20,7 +20,6 @@ export const Header = ({ onLoginClick }) => {
             <button onClick={handleLoginClick}>
                 {isLoggedIn ? 'Log Out' : 'Log In'}
             </button>
-            {/* <button onClick={logout}>Dark Matter</button> */}
         </header>
     );
 };
