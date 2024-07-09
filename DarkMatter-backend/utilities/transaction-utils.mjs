@@ -1,4 +1,3 @@
-// utilities/transaction-utils.js
 import { verifySignature } from '../utilities/crypto-lib.mjs';
 
 export const createOutputMap = ({ sender, recipient, amount }) => {
