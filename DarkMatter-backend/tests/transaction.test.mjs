@@ -1,5 +1,5 @@
 import { describe, test, expect, beforeEach } from 'vitest'
-import { createInputMap, createOutputMap } from '../utilities/transaction-utils.mjs';
+import { createInputMap, createOutputMap, validateTransaction } from '../utilities/transaction-utils.mjs';
 
 
 
@@ -20,4 +20,24 @@ describe('Transaction Utilities', () => {
             [sender.publicKey]: sender.balance - amount,
         })
     })
+
+    test('creates an input map', () => {
+        expect(inputMap).toEqual({
+            timestamp: expect.any(Number),
+            amount: sender.balance,
+            address: sender.publicKey,
+            signature: 'signature',
+        })
+    })
+
+    test('validates a transaction', () => {
+        const isValid = validateTransaction({ inputMap, outputMap })
+        expect(isValid).toBe(false)
+    })
+
+    // test('invalidates a transaction with mismatched amount', () => {
+    //     outputMap[sender.publicKey] += 40
+    //     const isValid = validateTransaction({ inputMap, outputMap })
+    //     expect(isValid).toBe(false)
+    // })
 })
