@@ -15,6 +15,11 @@ import morgan from 'morgan'
 import { fileURLToPath } from 'url';
 import { connectDb } from './config/mongo.mjs';
 import cookieParser from 'cookie-parser';
+import mongoSanitize from 'express-mongo-sanitize';
+import helmet from 'helmet';
+import xss from 'xss-clean';
+import rateLimit from 'express-rate-limit';
+import hpp from 'hpp';
 
 
 dotenv.config({ path: './config/config.env' });
@@ -40,6 +45,20 @@ export const pubnubServer = new PubNubServer({
 
 const app = express();
 
+//Security stuff
+/// NO-Sql Injection
+app.use(mongoSanitize())
+//headers
+app.use(helmet({ contentSecurityPolicy: false }))
+app.use(xss())
+
+const limit = rateLimit({
+    windowMs: 5 * 60 * 1000,
+    limit: 100,
+})
+app.use(limit)
+//HPP attacker
+app.use(hpp())
 app.use(cookieParser())
 app.use(cors({
     origin: 'http://localhost:5173',
