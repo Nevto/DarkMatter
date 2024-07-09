@@ -1,4 +1,47 @@
-.header {
+/* Ensure the header is fixed at the top and spans the full width */
+.headerWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    // background-color: #fff;
     display: flex;
-    background-color: black;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    color: white;
+
+}
+
+.logo img {
+    width: 100px;
+}
+
+.title {
+    margin: 0 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+nav a.active {
+    color: #007bff;
+}
+
+.wrapper {
+    padding-top: 100px;
+
 }
