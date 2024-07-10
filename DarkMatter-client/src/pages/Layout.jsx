@@ -5,7 +5,7 @@ export const Layout = () => {
     return (
         <div className='wrapper'>
             <div className="headerWrapper">
-                <header>
+                <header className='theWrapper'>
                     <figure className='logo'>
                         <img src={"./src/assets/DarkMatterLogo.png"} alt="Best logo in the world" />
                     </figure>
