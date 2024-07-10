@@ -40,7 +40,7 @@ const LogInForm = () => {
                 onChange={(e) => setName(e.target.value)}
             // required
             />
-            <button type="submit">Log In</button>
+            <button className="loginButton" type="submit">Log In</button>
         </form>
     );
 };

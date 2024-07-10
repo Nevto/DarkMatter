@@ -10,11 +10,15 @@ const Home = () => {
     }
 
     return (
-        <div>
+        <div className="registerForm">
+            <span className="regText">
+                <h2>You are not a member yet?</h2>
+                <h3>Log in or sign up below to take part of everything DarkMatter has to offer</h3>
+            </span>
             {showLoginForm ? <LogInForm /> : <RegisterForm />}
-
-            <button onClick={toggleForm}>
-                {showLoginForm ? <p>Register here</p> : <p>Already have an account? Login here</p>}
+            <div className="arrow-down"></div>
+            <button className="registerButton" onClick={toggleForm}>
+                {showLoginForm ? "Register here" : <p>Already have an account? Login here</p>}
             </button>
         </div>
     )
