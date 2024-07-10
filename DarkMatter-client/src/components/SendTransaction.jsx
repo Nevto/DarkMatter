@@ -19,28 +19,30 @@ export const SendTransaction = () => {
     return (
         <>
             <h2>Send a transaction</h2>
-            <input
-                type="text"
-                placeholder="Recipient"
-                value={recipient}
-                onChange={(e) => setRecipient(e.target.value)}
-                required
-            />
-            <input
-                type="text"
-                placeholder="Sender"
-                value={sender}
-                onChange={(e) => setSender(e.target.value)}
-                required
-            />
-            <input
-                type="number"
-                placeholder="Amount"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                required
-            />
-            <button onClick={handleTransactionClick}>Send</button>
+            <form className="registerForm">
+                <input
+                    type="text"
+                    placeholder="Recipient"
+                    value={recipient}
+                    onChange={(e) => setRecipient(e.target.value)}
+                    required
+                />
+                <input
+                    type="text"
+                    placeholder="Sender"
+                    value={sender}
+                    onChange={(e) => setSender(e.target.value)}
+                    required
+                />
+                <input
+                    type="number"
+                    placeholder="Amount"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    required
+                />
+            </form>
+            <button className='loginButton' onClick={handleTransactionClick}>Send</button>
         </>
     )
 }

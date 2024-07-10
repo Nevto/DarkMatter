@@ -3,6 +3,7 @@ import { Layout } from './pages/Layout';
 import Home from './pages/Home';
 import { Transactions } from './pages/Transaction';
 import { GetDarkMatterBlocks } from './pages/Blocks';
+import { AboutUsHandler } from './pages/AboutUs';
 
 
 export const darkMatterRouter = createBrowserRouter([
@@ -22,6 +23,10 @@ export const darkMatterRouter = createBrowserRouter([
             {
                 path: 'blocks',
                 element: <GetDarkMatterBlocks />
+            },
+            {
+                path: 'aboutus',
+                element: <AboutUsHandler />
             }
         ]
     }

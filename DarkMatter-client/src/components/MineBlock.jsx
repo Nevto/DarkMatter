@@ -11,9 +11,11 @@ export const MineBlock = () => {
     }
     return (
         <>
-            <h2>Mine your transactions</h2>
-            <p>Click the button below to make them permanent in the blockchain</p>
-            <button onClick={handleMineClick}>Mine</button>
+            <div className="mineWrapper">
+                <h2>Mine your transactions</h2>
+                <p>Click the button below to make them permanent in the blockchain</p>
+                <button className="loginButton" onClick={handleMineClick}>Mine</button>
+            </div>
         </>
     )
 }
