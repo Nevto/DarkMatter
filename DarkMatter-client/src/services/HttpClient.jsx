@@ -33,7 +33,7 @@ export const handleRegister = async (name, email, password) => {
     }
 };
 
-export const logout = async () => {
+export const logOut = async () => {
     try {
         const response = await axios.post('http://localhost:5001/api/v1/auth/logout', {
             withCredentials: true

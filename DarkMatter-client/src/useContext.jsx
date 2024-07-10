@@ -1,5 +1,5 @@
-import { createContext, useState, useContext } from "react";
-import { logIn, logout } from "./services/HttpClient"; // Adjust the import path as needed
+import { createContext, useState, useContext, useCallback } from "react";
+import { logIn, logOut } from "./services/HttpClient"
 
 const UserContext = createContext();
 
@@ -12,11 +12,13 @@ export const UserProvider = ({ children }) => {
     const logInUser = (name) => {
         setIsLoggedIn(true);
         setUserName(name);
+        console.log(`Logged in as ${name}`);
     };
 
-    const logOut = async () => {
+    const logOutHandler = async () => {
         try {
-            await logout()
+            await logOut()
+            console.log('Tokens are cleared, setting isLoggedIn to false')
             setIsLoggedIn(false);
             setUserName(null);
 
@@ -34,17 +36,19 @@ export const UserProvider = ({ children }) => {
     // };
 
 
-    const logInAndUpdateUser = async (email, password, name) => {
+    const logInAndUpdateUser = useCallback(async (email, password, name) => {
         try {
-            const user = await logIn(email, password);
-            logInUser(name || email); // Use alias if provided, otherwise use name from backend
+            await logIn(email, password)
+            logInUser(name || email)
         } catch (error) {
-            console.error("Login failed", error);
+            console.error("Login failed", error)
+            setIsLoggedIn(false)
+            throw error
         }
-    };
+    }, [logInUser])
 
     return (
-        <UserContext.Provider value={{ isLoggedIn, logIn: logInUser, logOut, userName, logInAndUpdateUser }}>
+        <UserContext.Provider value={{ isLoggedIn, logIn: logInUser, logOutHandler, userName, logInAndUpdateUser }}>
             {children}
         </UserContext.Provider>
     );

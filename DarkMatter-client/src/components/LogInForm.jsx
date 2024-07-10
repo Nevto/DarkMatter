@@ -1,12 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "../useContext";
+import { logOut } from "../services/HttpClient";
+import LogoutButton from "./LogoutButton";
 
 const LogInForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-    const { logInAndUpdateUser } = useContext(UserContext);
+    const { logInAndUpdateUser, isLoggedIn, logOutHandler } = useContext(UserContext);
     const [loggedInName, setLoggedInName] = useState(null);
+    const [error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,8 +20,28 @@ const LogInForm = () => {
             console.log('You are now logged in as', name || email);
         } catch (error) {
             console.log('Couldn\'t log in', error);
+            setError('Couldn\'t log in, please try again');
+            setLoggedInName(null);
         }
     };
+
+    useEffect(() => {
+        console.log('isLoggedIn state changed:', isLoggedIn);
+        if (!isLoggedIn) {
+            setLoggedInName(null);
+        }
+    }, [isLoggedIn]);
+
+
+    // const handleLogout = async () => {
+    //     try {
+    //         await logOut();
+    //         setLoggedInName(null);
+    //         console.log('Logged out successfully');
+    //     } catch (error) {
+    //         console.error('Error logging out', error);
+    //     }
+    // };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -43,7 +66,17 @@ const LogInForm = () => {
                 onChange={(e) => setName(e.target.value)}
             />
             <button className="loginButton" type="submit">Log In</button>
-            <p>Hello {loggedInName}, you are now logged in!</p>
+            {isLoggedIn &&
+                <LogoutButton />}
+
+
+            {loggedInName && (
+                <div className="loggedInMessage">
+                    <p>Hello {loggedInName}, you are now logged in!</p>
+                    <p>You may now send transactions, mine some blocks and explore the entirety of DarkMatter.</p>
+                </div>
+            )}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
     );
 };

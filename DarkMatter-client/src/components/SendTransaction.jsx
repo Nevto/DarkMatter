@@ -5,14 +5,18 @@ export const SendTransaction = () => {
     const [recipient, setRecipient] = useState('')
     const [sender, setSender] = useState('')
     const [amount, setAmount] = useState(0)
+    const [successMessage, setSuccessMessage] = useState('');
+    const [error, setError] = useState(null);
 
     const handleTransactionClick = async () => {
         try {
             await sendTransaction(recipient, sender, amount);
+            setSuccessMessage('Transaction sent successfully, wp you are now a crypto millionaire!');
             console.log('Transaction sent successfully');
 
         } catch (error) {
             console.error('Error sending transaction', error);
+            setError('Error sending transaction, please try again');
         }
     }
 
@@ -43,6 +47,8 @@ export const SendTransaction = () => {
                 />
             </form>
             <button className='loginButton' onClick={handleTransactionClick}>Send</button>
+            {<p style={{ color: 'white' }}>{successMessage}</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
         </>
     )
 }

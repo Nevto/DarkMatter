@@ -14,10 +14,10 @@ const RegisterForm = () => {
 
         try {
             const user = await handleRegister(name, email, password);
-            setSuccessMessage('Registration successful!');
+            setSuccessMessage('Registration successful!, please press the button below to login.');
             console.log('Registered user:', user);
         } catch (error) {
-            setError(error.message);
+            setError('This user probably already exists');
             console.error('Registration error:', error);
         }
 
@@ -58,7 +58,7 @@ const RegisterForm = () => {
                 <button className='loginButton' type="submit">Register</button>
             </form>
             {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-            {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+            {successMessage && <p style={{ color: 'white' }}>{successMessage}</p>}
         </div>
     );
 };
