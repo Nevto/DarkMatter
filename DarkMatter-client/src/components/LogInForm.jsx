@@ -6,11 +6,14 @@ const LogInForm = () => {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const { logInAndUpdateUser } = useContext(UserContext);
+    const [loggedInName, setLoggedInName] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await logInAndUpdateUser(email, password, name);
+            const loggedInName = name || email.split('@')[0];
+            setLoggedInName(loggedInName);
             console.log('You are now logged in as', name || email);
         } catch (error) {
             console.log('Couldn\'t log in', error);
@@ -38,9 +41,9 @@ const LogInForm = () => {
                 placeholder="Name (optional)"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-            // required
             />
             <button className="loginButton" type="submit">Log In</button>
+            <p>Hello {loggedInName}, you are now logged in!</p>
         </form>
     );
 };
