@@ -25,37 +25,37 @@ const RegisterForm = () => {
 
 
     return (
-        <div>
+        <div className='registerFormWrapper'>
             <h2>Register Form</h2>
-            <form onSubmit={registerUser}>
-                <div>
-                    <label>Name:</label>
+            <form className='register' onSubmit={registerUser}>
+                <div className='register'>
                     <input
+                        placeholder='Name'
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <label>Email:</label>
+                <div className='register'>
                     <input
+                        placeholder='Email'
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <label>Password:</label>
+                <div className='register'>
                     <input
+                        placeholder='Password'
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
-                <button type="submit">Register</button>
+                <button className='loginButton' type="submit">Register</button>
             </form>
             {error && <p style={{ color: 'red' }}>Error: {error}</p>}
             {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
