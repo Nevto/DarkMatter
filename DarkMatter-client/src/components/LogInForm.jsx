@@ -17,6 +17,7 @@ const LogInForm = () => {
             await logInAndUpdateUser(email, password, name);
             const loggedInName = name || email.split('@')[0];
             setLoggedInName(loggedInName);
+            resetForm();
             console.log('You are now logged in as', name || email);
         } catch (error) {
             console.log('Couldn\'t log in', error);
@@ -25,26 +26,20 @@ const LogInForm = () => {
         }
     };
 
-    useEffect(() => {
-        console.log('isLoggedIn state changed:', isLoggedIn);
-        if (!isLoggedIn) {
-            setLoggedInName(null);
-        }
-    }, [isLoggedIn]);
+    const resetForm = () => {
+        setEmail('');
+        setPassword('');
+        setName('');
+    }
 
+    const handleFormSubmit = (e) => {
+        handleSubmit(e);
+        resetForm();
+    }
 
-    // const handleLogout = async () => {
-    //     try {
-    //         await logOut();
-    //         setLoggedInName(null);
-    //         console.log('Logged out successfully');
-    //     } catch (error) {
-    //         console.error('Error logging out', error);
-    //     }
-    // };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleFormSubmit}>
             <input
                 type="text"
                 placeholder="Email"

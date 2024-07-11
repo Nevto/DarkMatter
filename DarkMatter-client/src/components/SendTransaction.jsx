@@ -19,6 +19,16 @@ export const SendTransaction = () => {
             setError('Error sending transaction, please try again');
         }
     }
+    const resetTransactionForm = () => {
+        setSender('');
+        setRecipient('');
+        setAmount('');
+    }
+
+    const onHandleFormSubmit = (e) => {
+        handleTransactionClick();
+        resetTransactionForm()
+    }
 
     return (
         <>
@@ -46,7 +56,7 @@ export const SendTransaction = () => {
                     required
                 />
             </form>
-            <button className='loginButton' onClick={handleTransactionClick}>Send</button>
+            <button className='loginButton' onClick={onHandleFormSubmit}>Send</button>
             {<p style={{ color: 'white' }}>{successMessage}</p>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
         </>
