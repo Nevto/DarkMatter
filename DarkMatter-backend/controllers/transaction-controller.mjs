@@ -6,6 +6,7 @@ import { pubnubServer } from "../server.mjs";
 import { asyncHandler } from "../middleware/asyncHandler.mjs";
 import TransactionModel from "../models/TransactionModel.mjs";
 
+
 export const addTransaction = asyncHandler(async (req, res, next) => {
     const { amount, recipient } = req.body;
 

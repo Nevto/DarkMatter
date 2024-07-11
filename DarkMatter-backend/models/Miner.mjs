@@ -12,7 +12,6 @@ export default class Miner {
 
     mineTransaction() {
         try {
-            // Validate and reward transactions
             const validTransactions = validateAndRewardTransactions({
                 transactionPool: this.transactionPool,
                 wallet: this.wallet
@@ -20,7 +19,6 @@ export default class Miner {
 
             this.darkMatter.addBlock({ data: validTransactions });
 
-            // Broadcast the new block and clear the transaction pool
             broadcastAndClearTransactions({
                 pubnubServer: this.pubnubServer,
                 transactionPool: this.transactionPool
