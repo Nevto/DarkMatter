@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import UserContext from '../useContext';
 
-const LogoutButton = () => {
-    const { logOutHandler } = useContext(UserContext);
+export const LogoutButton = ({ preventFormSubmit }) => {
+    const { logOut } = useContext(UserContext);
 
-    const handleLogout = async () => {
+    const handleLogout = async (e) => {
+        e.preventDefault();
+        if (preventFormSubmit) preventFormSubmit()
+
         try {
-            await logOutHandler();
+            await logOut();
             console.log('Logged out successfully');
         } catch (error) {
             console.error('Error logging out:', error);
@@ -14,7 +17,7 @@ const LogoutButton = () => {
     };
 
     return (
-        <button className="logoutButton" onClick={handleLogout}>
+        <button className="loginButton" onClick={handleLogout}>
             Log Out
         </button>
     );

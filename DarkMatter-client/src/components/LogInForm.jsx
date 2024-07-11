@@ -7,7 +7,7 @@ const LogInForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-    const { logInAndUpdateUser, isLoggedIn, logOutHandler } = useContext(UserContext);
+    const { logInAndUpdateUser, isLoggedIn, logOut } = useContext(UserContext);
     const [loggedInName, setLoggedInName] = useState(null);
     const [error, setError] = useState(null);
 
@@ -65,9 +65,9 @@ const LogInForm = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
             />
-            <button className="loginButton" type="submit">Log In</button>
+            {!isLoggedIn && <button className="loginButton" type="submit">Log In</button>}
             {isLoggedIn &&
-                <LogoutButton />}
+                <LogoutButton preventFormSubmit={() => console.log('it works')} />}
 
 
             {loggedInName && (

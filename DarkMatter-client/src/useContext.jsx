@@ -15,7 +15,7 @@ export const UserProvider = ({ children }) => {
         console.log(`Logged in as ${name}`);
     };
 
-    const logOutHandler = async () => {
+    const logOutUser = async () => {
         try {
             await logOut()
             console.log('Tokens are cleared, setting isLoggedIn to false')
@@ -48,7 +48,7 @@ export const UserProvider = ({ children }) => {
     }, [logInUser])
 
     return (
-        <UserContext.Provider value={{ isLoggedIn, logIn: logInUser, logOutHandler, userName, logInAndUpdateUser }}>
+        <UserContext.Provider value={{ isLoggedIn, logIn: logInUser, logOut: logOutUser, userName, logInAndUpdateUser }}>
             {children}
         </UserContext.Provider>
     );
