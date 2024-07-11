@@ -35,7 +35,7 @@ export const handleRegister = async (name, email, password) => {
 
 export const logOut = async () => {
     try {
-        const response = await axios.post('http://localhost:5001/api/v1/auth/logout', {
+        const response = await axios.post('http://localhost:5001/api/v1/auth/logout', {}, {
             withCredentials: true
         });
         console.log('You are now logged out');

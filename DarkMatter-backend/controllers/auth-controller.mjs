@@ -37,7 +37,7 @@ export const login = asyncHandler(async (req, res, next) => {
 export const logout = asyncHandler(async (req, res, next) => {
     res.clearCookie('token', {
         httpOnly: true,
-        secure: false,
+        secure: true,
         sameSite: 'Strict',
         path: '/',
         domain: 'localhost',

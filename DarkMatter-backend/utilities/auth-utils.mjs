@@ -3,7 +3,7 @@ export const createAndSendToken = (user, statusCode, res) => {
     res.cookie('token', token,
         {
             httpOnly: true,
-            secure: false,
+            secure: true,
             sameSite: 'Strict',
             path: '/',
             domain: 'localhost',
