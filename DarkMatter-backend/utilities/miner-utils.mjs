@@ -1,4 +1,5 @@
 import Transaction from "../models/Transaction.mjs";
+// import TransactionPool from "../models/TransactionPool.mjs";
 
 export const validateAndRewardTransactions = ({ transactionPool, wallet }) => {
     const validTransactions = transactionPool.validateTransactions();

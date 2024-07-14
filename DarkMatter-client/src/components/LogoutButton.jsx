@@ -9,10 +9,9 @@ export const LogoutButton = ({ preventFormSubmit }) => {
         if (preventFormSubmit) preventFormSubmit()
 
         try {
-            await logOut();
-            console.log('Logged out successfully');
+            await logOut()
         } catch (error) {
-            console.error('Error logging out:', error);
+            console.error('Error logging out:', error)
         }
     };
 

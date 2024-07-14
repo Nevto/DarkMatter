@@ -9,7 +9,6 @@ export const MineBlock = () => {
         try {
             await mineBlock();
             setSuccessMessage('Block successfully mined, go to the blocks page to view your newely mined block!')
-            console.log('Block mined successfully');
         } catch (error) {
             console.error('Error mining block', error);
             setError('Error mining block, please try again');

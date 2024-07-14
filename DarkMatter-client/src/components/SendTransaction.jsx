@@ -1,46 +1,40 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { sendTransaction } from "../services/HttpClient";
 
 export const SendTransaction = () => {
-    const [recipient, setRecipient] = useState('')
-    const [sender, setSender] = useState('')
-    const [amount, setAmount] = useState(0)
+    const [recipient, setRecipient] = useState('');
+    const [sender, setSender] = useState('');
+    const [amount, setAmount] = useState(0);
     const [successMessage, setSuccessMessage] = useState('');
     const [error, setError] = useState(null);
 
     const handleTransactionClick = async () => {
         try {
-            await sendTransaction(recipient, sender, amount);
-            setSuccessMessage('Transaction sent successfully, wp you are now a crypto millionaire!');
-            console.log('Transaction sent successfully');
+            await sendTransaction(sender, recipient, amount);
+            setSuccessMessage('Transaction sent successfully, wp you are now a crypto millionaire!')
 
         } catch (error) {
             console.error('Error sending transaction', error);
             setError('Error sending transaction, please try again');
         }
-    }
+    };
+
     const resetTransactionForm = () => {
         setSender('');
         setRecipient('');
-        setAmount('');
-    }
+        setAmount(0)
+    };
 
-    const onHandleFormSubmit = (e) => {
-        handleTransactionClick();
-        resetTransactionForm()
-    }
+    const onHandleFormSubmit = async (e) => {
+        e.preventDefault()
+        await handleTransactionClick();
+        resetTransactionForm();
+    };
 
     return (
         <>
             <h2>Send a transaction</h2>
-            <form className="registerForm">
-                <input
-                    type="text"
-                    placeholder="Recipient"
-                    value={recipient}
-                    onChange={(e) => setRecipient(e.target.value)}
-                    required
-                />
+            <form className="registerForm transactionForm" onSubmit={onHandleFormSubmit}>
                 <input
                     type="text"
                     placeholder="Sender"
@@ -49,15 +43,22 @@ export const SendTransaction = () => {
                     required
                 />
                 <input
+                    type="text"
+                    placeholder="Recipient"
+                    value={recipient}
+                    onChange={(e) => setRecipient(e.target.value)}
+                    required
+                />
+                <input
                     type="number"
                     placeholder="Amount"
                     value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
+                    onChange={(e) => setAmount(Number(e.target.value))}
                     required
                 />
+                <button className='loginButton transactionForm' type="submit">Send</button>
             </form>
-            <button className='loginButton' onClick={onHandleFormSubmit}>Send</button>
-            {<p style={{ color: 'white' }}>{successMessage}</p>}
+            {successMessage && <p style={{ color: 'white' }}>{successMessage}</p>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
         </>
     )

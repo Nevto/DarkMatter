@@ -51,8 +51,6 @@ export const addTransaction = asyncHandler(async (req, res, next) => {
     transactionPool.addTransaction(transaction);
     pubnubServer.broadcastTransaction(transaction);
 
-    console.log(transaction);
-
     res.status(201).json({ success: true, statusCode: 201, data: transaction });
 });
 

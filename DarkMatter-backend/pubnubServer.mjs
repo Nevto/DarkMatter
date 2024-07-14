@@ -56,7 +56,7 @@ export default class PubNubServer {
           this.handleFriendNodesMessage(msg);
         } else if (channel === CHANNELS.TRANSACTION && !this.transactionPool.transactionExists({ address: this.wallet.publicKey })) {
 
-          this.transactionPool.addTransaction(msg); //<<<<<<<<<<<<<<<<<<<<<<<<####################<<<<<<<<<<<<<<<<<<<<<<<<<<
+          this.transactionPool.addTransaction(msg);
         }
       },
     };

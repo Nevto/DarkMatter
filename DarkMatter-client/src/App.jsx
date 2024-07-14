@@ -12,11 +12,6 @@ import { darkMatterRouter } from './Router.jsx';
 
 
 const App = () => {
-  // const [showLoginForm, setShowLoginForm] = useState(false);
-
-  // const handleLoginClick = () => {
-  //   setShowLoginForm(prevState => !prevState);
-  // };
 
   return (
 
@@ -25,18 +20,8 @@ const App = () => {
         <RouterProvider router={darkMatterRouter} />
       </UserProvider>
     </div>
-    // <div>
 
-    //   <UserProvider>
-    //     <Header onLoginClick={handleLoginClick} />
-    //     {showLoginForm && <LogInForm />}
-    //     <RegisterForm />
-    //   </UserProvider>
-    //   <SendTransaction />
-    //   <MineBlock />
-    //   <GetDarkMatter />
-    // </div>
-  );
-};
+  )
+}
 
 export default App;

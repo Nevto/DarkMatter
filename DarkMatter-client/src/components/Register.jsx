@@ -15,7 +15,6 @@ const RegisterForm = () => {
         try {
             const user = await handleRegister(name, email, password);
             setSuccessMessage('Registration successful!, please press the button below to login.');
-            console.log('Registered user:', user);
         } catch (error) {
             setError('This user probably already exists');
             console.error('Registration error:', error);
